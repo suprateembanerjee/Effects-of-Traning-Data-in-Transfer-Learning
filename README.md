@@ -37,7 +37,7 @@ The main idea in the paper revolves around computing influence that a subsampled
 
 This influence in computed using a formula:
 
-![image-20230426122324968](/Users/suprateembanerjee/Documents/1.png)
+![image1](./res/1.png)
 
 The algorithm specified can be captured in the following pseudocode:
 
@@ -80,21 +80,21 @@ The authors define three capabilities of their probing framework using the influ
 
 **Capability 1**: The authors comment that even when the source class is not a direct sub-type of the target class, the downstream model can still leverage salient features from this class - such as shape or color - to predict on the target dataset.
 
-![image-20230426202740779](/Users/suprateembanerjee/Documents/2.png)
+![image2](./res/2.png)
 
-![image-20230426203123605](/Users/suprateembanerjee/Documents/3.png)
+![image3](./res/43png)
 
 **Capability 2**: The authors attempt to identify the most negatively influencing classes in the source dataset and remove it. They give the example of the ImageNet class Sorrel Horse and the CIFAR10 class Dog. The features from Sorrel Horse negatively impacts the prediction accuracy on the target dataset for the class Dog. Removing the Sorrel Horse class improves the prediction accuracy for Dog.
 
-![image-20230426203545674](/Users/suprateembanerjee/Documents/4.png)
+![image4](./res/4.png)
 
 **Capability 3**: The authors comment that highly influential images across two datasets are often instances of data leakage or typically mislabeled. Influences here is a tool to determine any form of data leakage from the training set to the test set, which might interfere with understanding real performance of the model on the test set. 
 
 The issue of misleading data is also considered. The authors use the most negatively influencing samples as an indicator to find training samples which are misleading the model. This , however, requires the technique to be used per datapoint in the training dataset.
 
-![image-20230426203932464](/Users/suprateembanerjee/Documents/5.png)
+![image5](./res/5.png)
 
-![image-20230426204353393](/Users/suprateembanerjee/Documents/6.png)
+![image5](./res/6.png)
 
 ## Personal Experimentation
 
@@ -150,3 +150,5 @@ Such challenges may prove to limit deployment of such systems in real world appl
 ## Conclusions
 
 To conclude, this project implemented the concepts presented in the paper "A Data-Based Perspective on Transfer Learning" by Jain et al. using a different dataset and architecture. The paper proposed a framework to analyze the impact of the source dataset's composition on transfer learning performance and demonstrated that subsets of the source dataset can positively or negatively affect the downstream behavior. The project used EfficientNet B3 architecture and TinyImageNet as the source dataset and CIFAR-10 as the target dataset. The results showed that similar classes across the two datasets had strong influence on the performance. Removing the classes which had strong negative influence improved the prediction accuracy. However, there are challenges to deploying such systems in real-world applications, such as limited knowledge of the target dataset and compromising the performance of many other classes by removing some classes. Overall, the project's findings were in line with the results presented in the paper.
+
+PS: A short notebook detailing the training of an EfficientNet on TinyImageNet and using the CIFAR10 dataset to finetune it, has been included.
